@@ -1,6 +1,8 @@
+
+
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+# from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 
 # App title
@@ -15,7 +17,9 @@ if name_on_order:
     st.write(f"The name on your Smoothie will be: {name_on_order}")
 
 # Snowflake session
-session = get_active_session()
+# session = get_active_session()
+cnx= st.connection("snowflake")
+session = cnx.session()
 
 # Load fruit options
 fruit_df = session.table("smoothies.public.fruit_options") \
